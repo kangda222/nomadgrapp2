@@ -29,7 +29,7 @@ function setUser(user) {
 // API Actions
 function login(username, password) {
     return dispatch => {
-      fetch(`${API_URL}/rest-auth/login/`, {
+      return fetch(`${API_URL}/rest-auth/login/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -41,12 +41,13 @@ function login(username, password) {
       })
         .then(response => response.json())
         .then(json => {
-          console.log(JSON.stringify(json));     
-          if (json.token) {
+          console.log(JSON.stringify(json));          
+          if (json.user && json.token) {
             dispatch(setLogIn(json.token));
-          }
-          if (json.user) {
             dispatch(setUser(json.user));
+            return true;
+          }else{
+            return false;
           }
         });
     };
@@ -83,10 +84,10 @@ function applyLogIn(state, action) {
     };
 }
   
-function applyLogOut(state, action) {
+async function applyLogOut(state, action) {
     console.log("================"+JSON.stringify(state));
     const { token } = action;
-    AsyncStorage.clear().then((data)=>{console.log("22222"+data);}); //logout: clear storage, remove everything in the storage
+    await AsyncStorage.clear().then((data)=>{console.log("22222"+data);}); //logout: clear storage, remove everything in the storage
     return {
       ...state,
       isLoggedIn: false,
