@@ -1,5 +1,6 @@
 // Imports
 import { API_URL } from "../../constants";
+import { AsyncStorage } from "react-native";
 
 // Actions
 const LOG_IN = "LOG_IN";
@@ -14,7 +15,7 @@ function setLogIn(token) {
     };
 }
   
-function setLogOut() {
+function setLogOut(user) {
     return { type: LOG_OUT };
 }
   
@@ -83,7 +84,9 @@ function applyLogIn(state, action) {
 }
   
 function applyLogOut(state, action) {
-    AsyncStorage.clear();
+    console.log("================"+JSON.stringify(state));
+    const { token } = action;
+    AsyncStorage.clear().then((data)=>{console.log("22222"+data);}); //logout: clear storage, remove everything in the storage
     return {
       ...state,
       isLoggedIn: false,
