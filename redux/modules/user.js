@@ -85,9 +85,9 @@ function applyLogIn(state, action) {
 }
   
 async function applyLogOut(state, action) {
-    console.log("================"+JSON.stringify(state));
+    console.log("===applyLogOut============="+JSON.stringify(state));
     const { token } = action;
-    await AsyncStorage.clear().then((data)=>{console.log("22222"+data);}); //logout: clear storage, remove everything in the storage
+    await AsyncStorage.clear(); //logout: clear storage, remove everything in the storage
     return {
       ...state,
       isLoggedIn: false,

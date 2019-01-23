@@ -9,7 +9,7 @@ class AppContainer extends Component {
   };
   render() {
     const { isLoggedIn } = this.props;
-    console.log(isLoggedIn);
+    console.log("appContainer isLoggedIn :: "+isLoggedIn);
     return (
       <View style={styles.container}>
         <StatusBar hidden={false} />
