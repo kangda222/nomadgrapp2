@@ -9,12 +9,12 @@ class AppContainer extends Component {
     isLoggedIn: PropTypes.bool.isRequired
   };
   render() {
-    const { isLoggedIn } = this.props;
+    const { isLoggedIn, profile } = this.props;
     console.log("appContainer isLoggedIn :: "+isLoggedIn);
     return (
       <View style={styles.container}>
         <StatusBar hidden={false} />
-        {isLoggedIn ? <RootNavigation/> : <LoggedOutNavigation/>}
+        {isLoggedIn && profile ? <RootNavigation screenProps={{ username: profile.username }}/> : <LoggedOutNavigation/>}
       </View>
     );
   }
