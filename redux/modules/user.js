@@ -15,7 +15,7 @@ function setLogIn(token) {
     };
 }
   
-function setLogOut(user) {
+function logOut(user) {
     return { type: LOG_OUT };
 }
   
@@ -105,7 +105,8 @@ function applySetUser(state, action) {
 
 // Exports
 const actionCreators = {
-    login
+    login,
+    logOut
 };
   
 export { actionCreators };

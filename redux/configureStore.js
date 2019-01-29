@@ -3,6 +3,7 @@ import { persistStore, persistCombineReducers } from "redux-persist"; //save sto
 import storage from "redux-persist/lib/storage";
 import thunk from "redux-thunk";
 import user from "./modules/user";
+import photos from "./modules/photos";
 
 const middlewares = [thunk]; //create middleware
 
@@ -12,7 +13,8 @@ const persistConfig = { //  create object, setup state, how to save: async
 };
 
 const reducer = persistCombineReducers(persistConfig, {
-  user
+  user,
+  photos
 }); //  combine reducers, save reducers on the disk of mobliephone with configurations we made, reducer has user and persistconfig
 
 const configureStore = () => {
