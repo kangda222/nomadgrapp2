@@ -71,8 +71,8 @@ Photo.propTypes = {
       })
     ).isRequired,
     natural_time: PropTypes.string.isRequired,
-    is_liked: PropTypes.bool.isRequired
-    //is_vertical: PropTypes.bool.isRequired
+    is_liked: PropTypes.bool.isRequired,
+    is_vertical: PropTypes.bool.isRequired
 };
 
 export default Photo;
