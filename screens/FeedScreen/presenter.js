@@ -11,8 +11,7 @@ const FeedScreen = props => (
             onRefresh={props.refresh}
             tintColor={"black"}
         />
-        }
-        contentContainerStyle={styles.container}
+        }        
     >
         <View style={styles.container}>
             {props.feed &&
