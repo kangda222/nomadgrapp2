@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 import Photo from "./presenter";
 
 class Container extends Component {
+  static propTypes = {
+    dispatchLike: PropTypes.func.isRequired
+  };
+
   render() {
       //console.log(this.props);
     return <Photo {...this.props} />;
