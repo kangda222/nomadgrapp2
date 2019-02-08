@@ -43,7 +43,7 @@ const Photo = props => (
           <Text style={styles.message}>{props.caption}</Text>
         </Text>
       </View>
-      {props.comments.length > 0 && (
+      {props.comments.length > 0 && (//onPressOut :: function 생성, (실행하는 것이 아닌)
         <TouchableOpacity onPressOut={() => props.navigation.navigate("Comments")}>
           <View style={styles.commentsLink}>          
             {props.comments.length === 1 ? (
