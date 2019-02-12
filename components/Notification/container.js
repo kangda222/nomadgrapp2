@@ -14,7 +14,7 @@ class Container extends Component {
     unfollowUser: PropTypes.func.isRequired
   };
   render() {
-    console.log(this.props);
+    //console.log(this.props);
     return (
       <Notification
         handleFollowPress={this._handleFollowPress}
