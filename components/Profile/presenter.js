@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 
 Profile.propTypes = {
   isFetching: PropTypes.bool.isRequired,
-  refresh: PropTypes.func.isRequired,
+  refresh: PropTypes.func.isRequired,  
   profileObject: PropTypes.shape({
     bio: PropTypes.string,
     followers_count: PropTypes.number,
@@ -63,6 +63,8 @@ Profile.propTypes = {
         //is_vertical: PropTypes.bool.isRequired
       })
     ),
+    is_self: PropTypes.bool.isRequired,
+    following: PropTypes.bool.isRequired,
     name: PropTypes.string,
     post_count: PropTypes.number,
     profile_image: PropTypes.string,
