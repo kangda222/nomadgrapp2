@@ -13,6 +13,8 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import FadeIn from "react-native-fade-in-image";
 import ProfileNumber from "../ProfileNumber";
+import SquarePhoto from "../SquarePhoto";
+import Photo from "../Photo";
 
 const width = Dimensions.get("window").width;
 
@@ -111,6 +113,20 @@ const Profile = props => (
                 </View>
             </TouchableOpacity>
             </View>
+
+            {props.mode === "grid" && (
+                <View style={styles.photoContainer}>
+                    {props.profileObject.images &&
+                    props.profileObject.images.map(photo => (
+                        <SquarePhoto key={photo.id} imageURL={photo.file} />
+                    ))}
+                </View>
+            )}
+
+            {props.mode === "list" && props.profileObject.images &&
+            props.profileObject.images.map(photo => (
+                <Photo {...photo} key={photo.id} />
+            ))}
         </View>
         </ScrollView>
     </View>
@@ -167,7 +183,8 @@ const styles = StyleSheet.create({
       alignItems: "center"
     },
     photoContainer: {
-      flexDirection: "row"
+      flexDirection: "row",
+      flexWrap: "wrap"
     },
     button: {
       borderRadius: 3,
@@ -195,11 +212,11 @@ Profile.propTypes = {
         creator: PropTypes.shape({
             profile_image: PropTypes.string,
             username: PropTypes.string.isRequired
-        }),    
+        }).isRequired,    
         file: PropTypes.string.isRequired,
         like_counts: PropTypes.number.isRequired,
-        location: PropTypes.string,
-        caption: PropTypes.string,
+        location: PropTypes.string.isRequired,
+        caption: PropTypes.string.isRequired,
         comments: PropTypes.arrayOf(
           PropTypes.shape({
             id: PropTypes.number.isRequired,
@@ -209,10 +226,10 @@ Profile.propTypes = {
               username: PropTypes.string.isRequired
             }).isRequired
           })
-        ),
-        natural_time: PropTypes.string,
-        is_liked: PropTypes.bool,
-        is_vertical: PropTypes.bool
+        ).isRequired,
+        natural_time: PropTypes.string.isRequired,
+        is_liked: PropTypes.bool.isRequired,
+        is_vertical: PropTypes.bool.isRequired
       })
     ),
     is_self: PropTypes.bool.isRequired,

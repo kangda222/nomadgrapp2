@@ -29,7 +29,7 @@ class Container extends Component {
   };
 
   render() {    
-    //console.log(this.props);
+    console.log(this.props);
     return (
         <Profile
           {...this.props}
@@ -45,7 +45,7 @@ class Container extends Component {
       mode: "list"
     });
   };
-  
+
   _changeToGrid = () => {
     this.setState({ mode: "grid" });
   };
