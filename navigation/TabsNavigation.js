@@ -40,6 +40,7 @@ const TabsNavigation = createBottomTabNavigator(
         tabBarIcon: ({ focused }) => (
           <Ionicons name={"ios-add-circle-outline"} size={30} color={"black"} />
         ),
+        //tabBarVisible : false,
         tabBarOnPress: () => {
           // Works!
           navigation.navigate("TakePhoto");
