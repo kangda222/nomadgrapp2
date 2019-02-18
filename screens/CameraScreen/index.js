@@ -22,9 +22,10 @@ class CameraScreen extends Component {
     };
   
     componentWillMount = async () => {
-      const camera = await Permissions.askAsync(Permissions.CAMERA);
+      const camera = await Permissions.askAsync(Permissions.CAMERA, Permissions.CAMERA_ROLL);
+      console.log(camera);
       this.setState({
-        hasCameraPermissions: camera.status === "granted"
+        hasCameraPermissions: camera.permissions.camera.status === "granted"
       });
     };
   
