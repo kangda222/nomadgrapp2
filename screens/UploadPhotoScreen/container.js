@@ -47,7 +47,7 @@ class Container extends Component {
           this.setState({
             isSubmitting: true
           });
-          const uploadResult =  await submit(url, caption, location, tags)
+          const uploadResult =  await submit(url, caption, location, tags);
           if(uploadResult){
             navigation.goBack(null);//뒤로가기 , 이전페이지로 가기
             navigation.goBack(null);
