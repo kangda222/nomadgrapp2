@@ -11,7 +11,7 @@ class Container extends Component {
         isSubmitting: false
       };
     render() {
-        console.log(this.props);
+        //console.log(this.props);
         const { navigation: { state: { params: { url } } } } = this.props;
         return (
             <UploadPhotoScreen

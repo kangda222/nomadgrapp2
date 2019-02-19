@@ -27,7 +27,7 @@ const RootNavigation = createStackNavigator(
         headerLeft: (
           <Button
             title="Cancel"
-            color="black"
+            //color="black"
             onPress={() => navigation.goBack(null)}
           />
         )

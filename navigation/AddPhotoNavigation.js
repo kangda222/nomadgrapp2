@@ -18,24 +18,25 @@ const AddPhotoNavigation = createMaterialTopTabNavigator(
     }
   },
   {
-    tabBarPosition: "top",
-    swipeEnabled: true,
-    animationEnabled: true,
-    tabBarOptions: {
-      showLabel: true,
-      upperCaseLabel: true,
-      activeTintColor: "black",
-      inactiveTintColor: "#bbb",
-      style: {
-        backgroundColor: "white",
-        alignItems: "center"
-      },
-      labelStyle: {
-        fontSize: 14,
-        fontWeight: "600"
-      },
-      showIcon: false
-    }
+    initialRouteName: 'Camera',
+    //tabBarPosition: "top",
+    // swipeEnabled: true,
+    // animationEnabled: true,
+     tabBarOptions: {
+    //   showLabel: true,
+    //   upperCaseLabel: true,
+       activeTintColor: "black",
+       inactiveTintColor: "#bbb",
+       style: {
+         backgroundColor: "white",
+    //     alignItems: "center"
+       },
+       labelStyle: {
+         fontSize: 14,
+         fontWeight: "600"
+       },
+    //   showIcon: false
+     }
   }
 );
 
