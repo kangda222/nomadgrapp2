@@ -14,7 +14,7 @@ class Container extends Component {
         //groupTypes: "SavedPhotos",
         assetType: "Photos"
         });
-        console.log(edges);
+        //console.log(edges);
         this.setState({
         photos: edges,
         pickedPhoto: edges[0]
