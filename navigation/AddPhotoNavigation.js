@@ -1,4 +1,4 @@
-import { createMaterialTopTabNavigator } from "react-navigation";
+import { createMaterialTopTabNavigator, createAppContainer } from "react-navigation";
 import CameraScreen from "../screens/CameraScreen";
 import LibraryScreen from "../screens/LibraryScreen";
 
@@ -40,4 +40,4 @@ const AddPhotoNavigation = createMaterialTopTabNavigator(
   }
 );
 
-export default AddPhotoNavigation;
+export default createAppContainer(AddPhotoNavigation);

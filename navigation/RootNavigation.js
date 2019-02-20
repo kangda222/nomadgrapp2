@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "react-native";
-import { createStackNavigator } from "react-navigation";
+import { createStackNavigator, createAppContainer } from "react-navigation";
 import TakePhotoScreen from "../screens/TakePhotoScreen";
 import TabsNavigation from "./TabsNavigation";
 import UploadPhotoScreen from "../screens/UploadPhotoScreen";
@@ -42,4 +42,4 @@ const RootNavigation = createStackNavigator(
   }
 );
 
-export default RootNavigation;
+export default createAppContainer(RootNavigation);

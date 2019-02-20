@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text } from "react-native";
-import { createBottomTabNavigator, TabBarBottom } from "react-navigation";
+import { createBottomTabNavigator, createAppContainer } from "react-navigation";
 import HomeRoute from "../routes/HomeRoute";
 import SearchRoute from "../routes/SearchRoute";
 import NotificationsRoute from "../routes/NotificationsRoute";
@@ -83,4 +83,4 @@ const TabsNavigation = createBottomTabNavigator(
   }
 );
 
-export default TabsNavigation;
+export default createAppContainer(TabsNavigation);
