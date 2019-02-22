@@ -1,23 +1,20 @@
 import React from "react";
-import { View, Text, ScrollView, RefreshControl, StyleSheet } from "react-native";
+import { View, Text, FlatList, StyleSheet } from "react-native";
 import PropTypes from "prop-types";
 import Photo from "../../components/Photo";
 
-const FeedScreen = props => (
-    <ScrollView
-        refreshControl={
-        <RefreshControl
+const FeedScreen = props => (    
+    <View style={styles.container}>
+        <FlatList
+            data={props.feed}
+            keyExtractor={(item)=>(item.id.toString())}
             refreshing={props.isFetching}
             onRefresh={props.refresh}
-            tintColor={"black"}
+            renderItem={({item})=>(
+              <Photo  {...item} />          
+            )}
         />
-        }        
-    >
-        <View style={styles.container}>
-            {props.feed &&
-            props.feed.map(photo => <Photo {...photo} key={photo.id} />)}
-        </View>
-    </ScrollView>
+    </View>
 );
 
 const styles = StyleSheet.create({

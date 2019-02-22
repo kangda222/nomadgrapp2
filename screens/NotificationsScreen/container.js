@@ -14,7 +14,7 @@ class Container extends Component {
     notifications: []
   };
   componentWillReceiveProps = nextProps => {
-    if (nextProps.feed) {
+    if (nextProps.notifications) {
       this.setState({
         isFetching: false
       });
@@ -22,11 +22,12 @@ class Container extends Component {
   };
 
   render() {
+    //console.log(this.props.notifications);
     return (
       <NotificationsScreen
         {...this.props}
         {...this.state}
-        refresh={this._refresh}
+        refresh={this._refresh}        
       />
     );
   }
@@ -36,7 +37,7 @@ class Container extends Component {
       isFetching: true
     });
     getNotifications();
-  };
+  }; 
 }
 
 export default Container;
