@@ -11,6 +11,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         } else {
           return dispatch(photoActions.likePhoto(id));
         }
+      },
+      dispatchGetLikes: photoId => {
+        return dispatch(photoActions.getLikes(photoId));
       }
     };
 };

@@ -24,7 +24,7 @@ const PhotoActions = props => (
         </View>
       </TouchableOpacity>
     </View>
-    <TouchableOpacity onPressOut={() => props.navigation.navigate("Likes")}>
+    <TouchableOpacity onPressOut={() => this._getPhotoLikes(props)}>
       <View>
         <Text style={styles.likes}>
           {props.likeCount} {props.likeCount === 1 ? "like" : "likes"}
@@ -53,7 +53,19 @@ const styles = StyleSheet.create({
 PhotoActions.propTypes = {
   isLiked: PropTypes.bool.isRequired,
   likeCount: PropTypes.number.isRequired,
-  handlePress: PropTypes.func.isRequired
+  handlePress: PropTypes.func.isRequired,
+  getLikes: PropTypes.func.isRequired,
+  photoId: PropTypes.number.isRequired
 };
+
+_getPhotoLikes = async(props) => {
+  //console.log(props);
+  const {getLikes, photoId, navigation} = props;
+  const likes = await getLikes(photoId);
+  //console.log(`likes :: `);
+  //console.log(likes.likes);
+
+  navigation.navigate("Likes",{likes: likes.likes});
+}
 
 export default withNavigation(PhotoActions);

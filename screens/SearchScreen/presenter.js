@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {
   View,
   Text,
+  FlatList,
   ScrollView,
   RefreshControl,
   StyleSheet,
@@ -13,27 +14,45 @@ import SquarePhoto from "../../components/SquarePhoto";
 const { width, height } = Dimensions.get("window");
 
 const SearchScreen = props => (
-  <ScrollView
-    refreshControl={
-      <RefreshControl
-        refreshing={props.isFetching}
-        onRefresh={props.refresh}
-        tintColor={"black"}
-      />
-    }
-  >
-    <View style={styles.container}>
-        {props.search.length === 0 && props.searchingBy.length > 1 ? (
+  // <ScrollView
+  //   refreshControl={
+  //     <RefreshControl
+  //       refreshing={props.isFetching}
+  //       onRefresh={props.refresh}
+  //       tintColor={"black"}
+  //     />
+  //   }
+  // >
+  //   <View style={styles.container}>
+  //       {props.search.length === 0 && props.searchingBy.length > 1 ? (
+  //           <Text style={styles.notFound}>
+  //           No images found for {props.searchingBy}
+  //           </Text>
+  //       ) : (
+  //           props.search.map(photo => (
+  //           <SquarePhoto key={photo.id} imageURL={photo.file} />
+  //           ))
+  //       )}
+  //   </View>
+  // </ScrollView>
+  <View style={styles.container}>
+    {props.search.length === 0 && props.searchingBy.length > 1 ? (
             <Text style={styles.notFound}>
             No images found for {props.searchingBy}
             </Text>
         ) : (
-            props.search.map(photo => (
-            <SquarePhoto key={photo.id} imageURL={photo.file} />
-            ))
+            <FlatList
+              data={props.search}
+              keyExtractor={(item)=>(item.id.toString())}
+              refreshing={props.isFetching}
+              onRefresh={props.refresh}
+              numColumns={3}
+              renderItem={({item})=>(
+                <SquarePhoto key={item.id} imageURL={item.file} />          
+              )}
+            />
         )}
-    </View>
-  </ScrollView>
+  </View>
 );
 
 const styles = StyleSheet.create({

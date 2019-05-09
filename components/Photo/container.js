@@ -12,13 +12,14 @@ class Container extends Component {
   }
 
   static propTypes = {
-    dispatchLike: PropTypes.func.isRequired
+    dispatchLike: PropTypes.func.isRequired,
+    dispatchGetLikes: PropTypes.func.isRequired
   };
 
   render() {
-      //console.log(this.props.creator);
+      //console.log(this.props);
       return (
-        <Photo handlePress={this._handlePress} {...this.props} {...this.state} />
+        <Photo handlePress={this._handlePress} {...this.props} {...this.state} getLikes={this._getLikes} />
       );
   }
 
@@ -41,6 +42,15 @@ class Container extends Component {
         };
       });
     }
+  };
+
+  _getLikes = async(photoId) => {
+    const { dispatchGetLikes } = this.props;
+    //console.log(`photoId :: ${photoId}`);    
+    const Likes = await dispatchGetLikes(photoId);
+    //console.log("Likes :: ");
+    //console.log(Likes);
+    return Likes;    
   };
 }
 

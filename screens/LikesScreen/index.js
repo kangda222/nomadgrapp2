@@ -1,6 +1,19 @@
-import React from "react";
-import { View, Text } from "react-native";
+import { connect } from "react-redux";
+import Container from "./container";
+import { actionCreators as photoActions } from "../../redux/modules/photos";
 
-const LikesScreen = props => <Text>Likes</Text>;
+const mapStateToProps = (state, ownProps) => {
+    //console.log(state);
+    const { photos: { feed: { likes } } } = state;
+    return { likes };
+};
 
-export default LikesScreen;
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+      getLikes: (photoId) => {
+        dispatch(photoActions.getLikes(photoId));
+      }
+    };
+};
+  
+export default connect(mapStateToProps, mapDispatchToProps)(Container);

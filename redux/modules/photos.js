@@ -8,6 +8,7 @@ import uuidv1 from "uuid/v1";
 
 const SET_FEED = "SET_FEED";
 const SET_SEARCH = "SET_SEARCH";
+const SET_LIKES = "SET_LIKES";
 
 // Action Creators
 
@@ -20,6 +21,13 @@ function setFeed(feed) {
 
 function setSearch(search) {
     return { type: SET_SEARCH, search };
+}
+
+function setLikes(likes) {
+  return{
+    type: SET_LIKES,
+    likes
+  }
 }
 
 // API Actions
@@ -155,6 +163,25 @@ function uploadPhoto(file, caption, location, tags) {
   };
 }
 
+function getLikes(photoId) {
+  return (dispatch, getState) => {
+    const { user: { token } } = getState();
+    return fetch(`${API_URL}/images/${photoId}/likes`, {
+      method: "GET",
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    }).then(response => {
+      if (response.status === 401) {
+        dispatch(userActions.logOut());
+      } else {
+        return response.json();
+      }
+    })
+    .then(json => dispatch(setLikes(json)));
+  };
+}
+
 // Initial State
 
 const initialState = {};
@@ -166,7 +193,9 @@ function reducer(state = initialState, action) {
     case SET_FEED:
       return applySetFeed(state, action);
     case SET_SEARCH:
-      return applySetSearch(state, action);  
+      return applySetSearch(state, action);
+    case SET_LIKES:
+      return applySetLikes(state, action);
     default:
       return state;
   }
@@ -190,6 +219,14 @@ function applySetSearch(state, action) {
     };
 }
 
+function applySetLikes(state, action) {
+  const { likes } = action;
+  return {
+    ...state,
+    likes
+  };
+}
+
 // Exports
 
 const actionCreators = {
@@ -198,7 +235,8 @@ const actionCreators = {
   likePhoto,
   unlikePhoto,
   searchByHashtag,
-  uploadPhoto
+  uploadPhoto,
+  getLikes
 };
 
 export { actionCreators };
